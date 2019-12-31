@@ -31,7 +31,7 @@ def waveani(sta, cha, starttime, endtime, filename):
     fig, ax = plt.subplots(figsize=(12.80, 2.4), dpi = 100)
     p = list(range(len(y)))
     stime = [str(UTCDateTime(starttime) + i/25) for i in p]
-    line, = ax.plot([], [], lw=.4)
+    line, = ax.plot([], [], lw=.5, color = "black")
     annotation = ax.annotate(str(stime[0]), xy=(975, 215),
                              xycoords='figure pixels', fontsize=10)
     annotation.set_animated(True)
@@ -57,7 +57,14 @@ def waveani(sta, cha, starttime, endtime, filename):
         annotation.set_text(stime[i])
     ani = animation.FuncAnimation(fig, animate, init_func=init, frames=len(y),
                                   interval=25, blit=False)
+    
+    #Remove hash below to plot the trace in full immediately, then have 
+    #a darker trace plot in real time over it
+    
+    #plt.plot(x, y, alpha = 0.5, color = "lightsteelblue")
+    
     #writing and saving. Can change .mp4 to desired file format.
+
     writer = FFMpegWriter(fps=25, bitrate=1800)
     ani.save((filename + ".mp4"), writer=writer)
 
