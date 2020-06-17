@@ -47,7 +47,7 @@ firstprelim['reviewtime'] = firstprelim['modtime'] - firstprelim['origtime'] #ca
 
 #print outpt below, currently a trimmed mean at 10% either side 
 print("Trimmed mean for preliminary commit: " + str(stats.trim_mean(firstprelim['reviewtime'], 0.1)))
-print("Median for preliminary commit: ") + str(firstprelim['reviewtime'].median())
+print("Median for preliminary commit: " + str(firstprelim['reviewtime'].median()))
 
 # as above but with best instead of prelim
 df2 = pd.DataFrame(bestjson)
@@ -55,4 +55,4 @@ ids2 = df2.groupby('id')
 firstbest = ids2.last()
 firstbest['reviewtime'] = firstbest['modtime'] - firstbest['origtime']
 print("Trimmed mean for first best commit: " + str(stats.trim_mean(firstbest['reviewtime'], 0.1)))
-print("Median for first best commit: ") + str(firstbest['reviewtime'].median())
+print("Median for first best commit: " + str(firstbest['reviewtime'].median()))
